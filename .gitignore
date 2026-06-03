@@ -1,0 +1,24 @@
+# 테라폼 관련 찌꺼기 거르기
+.terraform/
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+
+# 로컬 파이썬 가상환경 거르기
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# 수집한 원본 데이터 파일 거르기
+*.csv
+
+# OS 찌꺼기 파일 거르기
+.DS_Store
+Thumbs.db
+
+# 구글 클라우드 서비스 계정 키 파일 절대 차단
+*.json
+
+# 깃허브 토큰 메모장 파일 차단
+*.txt
