@@ -20,7 +20,7 @@
 
 ---
 
-## 🛠️ 기술 스택 (Tech Stacks)
+## 기술 스택 (Tech Stacks)
 
 | 분류 | 기술 기술 | 선택 이유 |
 | :--- | :--- | :--- |
@@ -31,7 +31,7 @@
 
 ---
 
-## 📂 프로젝트 구조 (Directory Structure)
+## 프로젝트 구조 (Directory Structure)
 
 ```text
 .
