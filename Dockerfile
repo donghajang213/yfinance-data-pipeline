@@ -8,8 +8,14 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 4. 우리가 짠 파이썬 코드 소스파일을 컨테이너 안으로 복사
-COPY pipeline.py .
+# # 4. 우리가 짠 파이썬 코드 소스파일을 컨테이너 안으로 복사
+# COPY pipeline.py .
 
-# 5. 이 도커 상자가 실행(Run)될 때 자동으로 실행할 명령어 지정
-CMD ["python", "pipeline.py"]
+# 4. 우리가 짠 전체 코드 폴더 복사하기 (기존 COPY pipeline.py . 에서 변경!)
+COPY . .
+
+# # 5. 이 도커 상자가 실행(Run)될 때 자동으로 실행할 명령어 지정
+# CMD ["python", "pipeline.py"]
+
+# 5. 실행할 명령어 (이제 파일이 data_warehouse 폴더 안에 있으므로 경로 변경!)
+CMD ["python", "data_warehouse/pipeline.py"]

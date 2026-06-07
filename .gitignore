@@ -9,6 +9,7 @@ venv/
 .venv/
 __pycache__/
 *.pyc
+.env
 
 # 수집한 원본 데이터 파일 거르기
 *.csv
