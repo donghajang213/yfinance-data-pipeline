@@ -22,5 +22,5 @@ resource "google_sql_database" "finance_db" {
 resource "google_sql_user" "db_user" {
   name     = "admin_user"
   instance = google_sql_database_instance.warehouse_instance.name
-  password = "password123!" # <- 나중에 환경변수 등으로 숨길 거지만, 일단 임시로 사용할 비밀번호로 바꿔줘!
+  password = "password" # <- 나중에 환경변수 등으로 숨길 거지만, 일단 임시로 사용할 비밀번호로 바꿔줘!
 }
