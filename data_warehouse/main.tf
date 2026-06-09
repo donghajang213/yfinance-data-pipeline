@@ -1,26 +1,15 @@
-# 1. Cloud SQL 인스턴스 (서버 본체) 생성
-resource "google_sql_database_instance" "warehouse_instance" {
-  name             = "yfinance-dw-instance"
-  database_version = "POSTGRES_15"
-  region           = "asia-northeast3"
 
-  settings {
-    tier = "db-f1-micro" # 가장 저렴한 무료/학습용 스펙
-  }
+# 1. BigQuery 데이터셋 (데이터가 들어갈 가장 큰 폴더/창고 역할)
+resource "google_bigquery_dataset" "stock_dataset" {
+  dataset_id                  = "stock_dataset"                  # 파이썬 코드에 적은 BQ_DATASET_ID와 동일해야 함
+  friendly_name               = "S&P 500 Stock Dataset"
+  description                 = "S&P 500 주식 데이터를 적재하는 빅쿼리 데이터셋"
+  location                    = "asia-northeast3"                # 데이터가 물리적으로 저장될 위치 (서울)
   
-  # 실습용이므로 삭제가 쉽도록 설정 (운영 환경에서는 true로 해야 함)
-  deletion_protection = false 
+  # 실무에서는 false로 하지만, 포트폴리오용이므로 나중에 깔끔하게 지우기 위해 true 설정
+  delete_contents_on_destroy  = true 
 }
 
-# 2. 인스턴스 안에 실제 데이터베이스 생성
-resource "google_sql_database" "finance_db" {
-  name     = "stock_data"
-  instance = google_sql_database_instance.warehouse_instance.name
-}
-
-# 3. 데이터베이스 접속용 유저 생성
-resource "google_sql_user" "db_user" {
-  name     = "admin_user"
-  instance = google_sql_database_instance.warehouse_instance.name
-  password = "password" # <- 나중에 환경변수 등으로 숨길 거지만, 일단 임시로 사용할 비밀번호로 바꿔줘!
-}
+# (주의!) 테이블(Table) 생성 코드는 굳이 테라폼에 안 적어도 돼!
+# 왜냐하면 우리의 똑똑한 파이썬 코드(pipeline.py)가 실행될 때 
+# "어? 테이블이 없네? 내가 Pandas 데이터 모양대로 알아서 만들게!" 하고 자동 생성해주거든.
