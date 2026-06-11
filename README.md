@@ -43,6 +43,13 @@
 ```
 
 ---
+.env 파일 내용
+# .env 파일
+GCP_PROJECT_ID="GCP ID"
+BQ_DATASET_ID= 데이터셋 ID
+BQ_TABLE_NAME=테이블 이름
+
+---
 
 ##  주요 기능 및 핵심 고도화 포인트
 
