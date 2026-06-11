@@ -2,6 +2,9 @@ import os
 import yfinance as yf
 import pandas as pd
 from google.cloud import bigquery # PostgreSQL용 sqlalchemy 대신 빅쿼리 라이브러리로 교체!
+from dotenv import load_dotenv # 추가
+
+load_dotenv()  # .env 파일에서 환경 변수 로드
 
 def get_stock_data(ticker_symbol):
     """yfinance를 이용해 주식 데이터를 가져오는 함수"""
@@ -59,8 +62,8 @@ if __name__ == "__main__":
     
     # ⚠️ [수정 주의] 본인의 진짜 GCP 프로젝트 ID로 바꿔줘! (예: stock-data-pipeline-496004)
     GCP_PROJECT_ID = os.environ.get("GCP_PROJECT_ID", "your-project-id") 
-    BQ_DATASET_ID = "stock_dataset"      # 우리가 만들 빅쿼리 빈 통 이름
-    BQ_TABLE_NAME = "daily_stock_prices" # 데이터가 들어갈 테이블 이름
+    BQ_DATASET_ID = os.environ.get("BQ_DATASET_ID", "stock_dataset")      # 우리가 만들 빅쿼리 빈 통 이름
+    BQ_TABLE_NAME = os.environ.get("BQ_TABLE_NAME") # 데이터가 들어갈 테이블 이름
     
     for ticker in target_tickers:
         # 1. 데이터 추출 (Extract) & 변환 (Transform)

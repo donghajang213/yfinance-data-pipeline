@@ -8,6 +8,6 @@ terraform {
 }
 
 provider "google" {
-  project = "GCP ID 입력"
+  project = "GCP ID"
   region  = "asia-northeast3" # 서울 리전
 }
