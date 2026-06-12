@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  superset:
+    build: .
+    container_name: superset
+    ports:
+      - "8088:8088"
+    environment:
+      - SUPERSET_SECRET_KEY=my_secret_key_for_portfolio_1129
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/gcp-key.json  # 추가
+    volumes:
+      - superset_home:/app/superset_home
+      - ./gcp-key.json:/app/gcp-key.json:ro  # 추가
+    restart: unless-stopped
+
+volumes:
+  superset_home:

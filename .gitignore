@@ -21,3 +21,6 @@ Thumbs.db
 # 구글 클라우드 서비스 계정 키 파일 절대 차단
 *.json
 
+# Airflow 가동 로그 및 볼륨 데이터
+airflow_env/logs/
+airflow_env/plugins/
